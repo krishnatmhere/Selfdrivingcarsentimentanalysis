@@ -1,1 +1,93 @@
+<div id="overlay">
+  <div class="cv-spinner">
+    <span class="spinner"></span>
+  </div>      
+</div>
+<div id="app">
+    <script src=
+        "https://d3js.org/d3.v4.min.js">
+    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" href='/staticFiles/main.css' />
+    
+    <div id="top" :style="bgc">
+      <div class="labels">
+        <div style="width: 80%;">Type your emotion about the self driving cars</div>
+        <div class="score">Score</div>
+      </div>
+      <div class="interactive">
+        <textarea v-model="phrase" id="txtArea"></textarea>
+        <p class="score" id =score></p>
+      </div>
+      <button id="button" type="button">Check Sentimence</button>
+           
+      
+    </div>
+    <div id="middle">
+      <div id="positive">
+      <span style='font-size:100px;'>&#128522; </span>
+    </div>
+      <div id="negative">
+        <span style='font-size:100px;'>&#128577;</span>
+      </div>
+    </div>
+    
+    <div id="footer" :style="bgc">
+      Score is based on our algorithm which determines the sentimence of your opinion towards self driving cars
+    </div>
+  </div>
+<script>
+console.log('start');
+var text ;
+var score;
+var positive = document.getElementById("positive");
+positive.style.display = "none";
+var negative = document.getElementById("negative");
+negative.style.display = "none";
+jQuery(function($){
+  $(document).ajaxSend(function() {
+    $("#overlay").fadeIn(300);　
+  });
+    
+  $('#button').click(function(){
+    positive.style.display = "none";
+    negative.style.display = "none";
+    document.getElementById('txtArea').value = document.getElementById('txtArea').value;
+    text = document.getElementById('txtArea').value;
+    console.log(text);
+    $('#score').html('');
+    document.body.style.background = "#FFFFFF";
+    $.ajax({
+      type: "POST",
+      url: "/findyoursentimence",
+      data: JSON.stringify(text),
+      contentType: "application/json",
+      dataType: 'json',
+      success: function(data){
+        console.log(data);
+        $('#score').html(data);
+        if (parseInt(data) >0){
+          document.body.style.background = "#3CB371";
+          positive.style.display = "block";
+          negative.style.display = "none";
+        }
+        else{
+          document.body.style.background = "#a64452";
+          positive.style.display = "none";
+          negative.style.display = "block";
+        }
+      }
+    }).done(function() {
+      setTimeout(function(){
+        $("#overlay").fadeOut(300);
+      },500);
+      
+    });
+  });	
+});
+       
+
+
+
+</script>
 
