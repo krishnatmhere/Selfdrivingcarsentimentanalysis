@@ -1,0 +1,182 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+#app {
+  display: grid;
+  grid-template-rows: 40vh 1fr 30vh 1fr;
+  grid-template-columns: repeat(8, 1fr);
+}
+
+#top {
+  grid-column: 1/9;
+  grid-row: 1/2;
+  font-size: 2em;
+  display: flex;
+  flex-direction: column;
+/*   justify-content: center; */
+  padding: 1em 2em;
+}
+
+textarea {
+  resize: none;
+  font-size: 1em;
+  padding-bottom: 5px;
+  text-align: left;
+  outline: none;
+  width: 80%;
+  background-color: transparent;
+  border-color: transparent;
+  border-bottom: black solid 1px;
+}
+
+.labels {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 16px;
+  text-align: left;
+  margin-bottom: 10px;;
+}
+
+.interactive {
+  display: flex;
+}
+
+.score {
+  width: 20%;
+  margin-left: 0 10px;
+  text-align: left;
+}
+
+#middle {
+  grid-column: 1/9;
+  grid-row: 2/3;
+  display: flex;
+  justify-content: space-evenly;
+  align-content: center;
+  font-size: 3em;
+}
+
+.emoji {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  padding: 1em 0;
+}
+
+.word-list {
+  color: white;
+  overflow-y: scroll;
+  padding-top: 1em;
+  padding-left: 1em;
+}
+
+/* #positive {
+  grid-column: 1/5;
+  grid-row: 3/4;
+  background-color: #1a237e;
+}
+
+#negative {
+  grid-column: 5/9;
+  grid-row: 3/4;
+  background-color: #b71c1c;
+} */
+
+.list-head {
+  font-size: 1.3em;
+  padding-bottom: 10px;
+  text-decoration: bold;
+}
+
+li {
+  padding: 5px 0 5px 10px;
+}
+
+#footer {
+  grid-column: 1/9;
+  grid-row: 4/5;
+  text-align: center;
+  padding: 1em;
+}
+
+.loading-in-progress::before { /* background cover */ 
+	content: ''; 
+	position: fixed; 
+	left: 0; right: 0; top: 0; bottom: 0; 
+	background-color: white; 
+	z-index: 100000; 
+} 
+ 
+.loading-in-progress::after { /* spinner */ 
+	content: ''; 
+	position: fixed; 
+	left: 50vw; top: 50vh; 
+	transform: translate(-50%,-50%); 
+	width: 100px; height: 100px; 
+	background-image: 'D:\\Project\\WEB APP\\staticFiles\\spinner-design.svg'; 
+	animation: 0.5s infinite forwards spin-animation; 
+	z-index: 100000; 
+} 
+ 
+@keyframes spin-animation { /* make the spinner spin */ 
+	0% {transform: rotate(0deg)} 
+	100% {transform: rotate(360deg)} 
+} 
+
+#button{
+  display:block;
+  margin:20px auto;
+  padding:10px 30px;
+  background-color:#eee;
+  border:solid #ccc 1px;
+  cursor: pointer;
+  
+}
+#overlay{	
+  position: fixed;
+  top: 0;
+  left:0;
+  z-index: 100;
+  width: 100%;
+  height:100%;
+  display: none;
+  background: rgba(0,0,0,0.6);
+  padding:0px;
+  margin:0px;
+  overflow:hidden;
+}
+.cv-spinner {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px #ddd solid;
+  border-top: 4px #2e93e6 solid;
+  border-radius: 50%;
+  animation: sp-anime 0.8s infinite linear;
+}
+@keyframes sp-anime {
+  100% { 
+    transform: rotate(360deg); 
+  }
+}
+.is-hide{
+  display:none;
+}
+
+.overlay
+{
+  padding:0px;
+  margin:0px;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+}
+
